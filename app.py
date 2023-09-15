@@ -2,7 +2,7 @@
 from flask import Flask, redirect, render_template, url_for
 from flask_debugtoolbar import DebugToolbarExtension
 from model import db, connect_db, Pets
-from forms import Pet_form
+from forms import AddPetForm
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///playlist-app'

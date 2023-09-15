@@ -3,6 +3,7 @@
     % block title % <title>Pets Available for Adoption</title> % endblock %
 % block content %
     <h2>Pets Available for Adoption</h2>
+    <a href="{{ url_for('add_pet') }}">Add a New Pet</a>
     <ul>
         {% for pet in pets %}
         <li>
