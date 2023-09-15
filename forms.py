@@ -21,3 +21,9 @@ class Petform(FlaskForm):
     Age = IntegerField('Age', validators = [Optional()])
     Notes = TextAreaField('Notes', validators = [Optional])
     Available = BooleanField('Available for Adoption', default = True)
+
+
+class EditPetForm(FlaskForm):
+    photo_url = StringField('Photo URL', validators = [URL()])
+    notes = TextAreaField('Notes')
+    available = BooleanField('Available For Adoption')
