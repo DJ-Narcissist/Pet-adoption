@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Pet Adoption{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Pet Adoption</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('homepage') }}">Home</a></li>
+                <li><a href="{{ url_for('add_pet') }}">Add Pet</a></li>
+                <!-- Add more navigation links as needed -->
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="content">
+            {% block content %}
+            <!-- Content from child templates will be inserted here -->
+            {% endblock %}
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 Pet Adoption</p>
+    </footer>
+</body>
+</html>

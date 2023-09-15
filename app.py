@@ -1,8 +1,8 @@
-from flask import Flask, redirect, render_template
-from flask_debugtoolbar import DebugToolbarExtension
 
-from model import db, connect_db, Playlist, Song, PlaylistSong
-from forms import NewSongForPlaylistForm, SongForm, PlaylistForm
+from flask import Flask, redirect, render_template, url_for
+from flask_debugtoolbar import DebugToolbarExtension
+from model import db, connect_db, Pets
+from forms import Pet_form
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///playlist-app'
@@ -21,3 +21,33 @@ app.config['SECRET_KEY'] = "I'LL NEVER TELL!!"
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 debug = DebugToolbarExtension(app)
+
+@app.route("/")
+def homepage():
+    """Homepage to redirect """
+    pets = Pets.query.all()
+
+    return render_template('index.html', pets = pets)
+
+@app.route('/add, methods = ['GET', 'POST']')
+def add_pet():
+    form = AddPetForm()
+
+    if form.validate_on submit():
+        """Creat new pet object from form data"""
+        new_pet = Pets(
+            name= form.name.data,
+            species = form.species.data,
+            photo_url = form.photo_url.data,
+            age = form.age.data,
+            notes = form.notes.data,
+            available = form.available.data
+        )
+
+
+        db.session.add(new_pet)
+        db.session.commit()
+
+        return redirect(url_for('homepage'))
+
+    return render_template('add_pet.html', form = form)
